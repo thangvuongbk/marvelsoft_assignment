@@ -1,0 +1,96 @@
+# depslib dependency file v1.0
+1657389002 source:/home/thangvuong/work/CodeBlock_WS/Assignment/main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<json/json.h>
+	<memory>
+
+1657358002 source:/home/thangvuong/work/CodeBlock_WS/Assignment/src/input_handle_class.cpp
+	"input_handle_class.h"
+
+1657377471 /home/thangvuong/work/CodeBlock_WS/Assignment/include/input_handle_class.h
+
+1657362036 source:/home/thangvuong/work/CodeBlock_WS/Assignment/src/process_handler_class.cpp
+	"process_handler_class.h"
+
+1657361620 /home/thangvuong/work/CodeBlock_WS/Assignment/include/process_handler_class.h
+	<iostream>
+	<mutex>
+	<thread>
+	<string>
+	<chrono>
+	"../template.h"
+	"../order_property.h"
+
+1657357781 /home/thangvuong/work/CodeBlock_WS/Assignment/template.h
+	<queue>
+	<mutex>
+	<condition_variable>
+
+1657359355 source:/home/thangvuong/work/CodeBlock_WS/Assignment/src/process_object_pool_class.cpp
+	"process_object_pool_class.h"
+
+1657359469 /home/thangvuong/work/CodeBlock_WS/Assignment/include/process_object_pool_class.h
+	<map>
+	<string>
+	"process_handler_class.h"
+
+1657361150 /home/thangvuong/work/CodeBlock_WS/Assignment/order_property.h
+	<string>
+
+1624934398 /usr/local/include/json/json.h
+	"config.h"
+	"json_features.h"
+	"reader.h"
+	"value.h"
+	"writer.h"
+
+1624934398 /usr/local/include/json/config.h
+	<cstddef>
+	<cstdint>
+	<istream>
+	<memory>
+	<ostream>
+	<sstream>
+	<string>
+	<type_traits>
+	"allocator.h"
+	"version.h"
+
+1624934398 /usr/local/include/json/allocator.h
+	<cstring>
+	<memory>
+
+1624934398 /usr/local/include/json/version.h
+
+1624934398 /usr/local/include/json/json_features.h
+	"forwards.h"
+
+1624934398 /usr/local/include/json/forwards.h
+	"config.h"
+
+1624934398 /usr/local/include/json/reader.h
+	"json_features.h"
+	"value.h"
+	<deque>
+	<iosfwd>
+	<istream>
+	<stack>
+	<string>
+
+1624934398 /usr/local/include/json/value.h
+	"forwards.h"
+	<array>
+	<exception>
+	<map>
+	<memory>
+	<string>
+	<vector>
+
+1624934398 /usr/local/include/json/writer.h
+	"value.h"
+	<ostream>
+	<string>
+	<vector>
+

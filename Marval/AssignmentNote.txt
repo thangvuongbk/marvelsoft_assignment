@@ -1,0 +1,163 @@
+Input:
+FIle json included all the instrument/symbol
+
+Output:
+File format follows by requirement
+------------------------------------------------------------------------------------------------------
+
+Process: 1 process
+Thread:
+Main: This thread is used to spaw other threads and keep them alive
+InputHandler: This thread is used to handle the json input
+				- Parse out each element and push it to ProcessHandler
+ProcesHandler: Receive input from InputHandler thread and process it
+				- Every instrument shall have a thread or use the thread pool pattern
+				- 20 threads shall be put into the thread pool for use. This shall be started based on the symbol
+OutputHandler: Receive input from ProcesHandler and write to file or print it out to console
+
+======================================================================================================
+Class classification
+
+
+
+
+======================================================================================================
+Data structure and shared class
+ shared struct between InputHandler thread and ProcesHandler;
+
+typdef struct order_ {
+	int count;
+	int quantiy;
+	double price;
+} order_t;
+
+
+struct specificSymbolAttr{
+	int symbol;
+	order_t bid;
+	order_t ask; 
+};
+
+typdef struct orderValue_ {
+	int count;
+	int quantiy;
+} orderValue_t;
+
+std::map(double price, orderValue_ orderVal);
+================================================================================================
+price is exsiting in the map order either in BUY or SELL:
+	if quantiy no change: save count and do nothing
+	if quantiy changed:
+		if count no change: 
+			CANCEL BUY/SELL PREVIOUS_VALUE OR (PREVIOUS_VALUE - TRADE_VALUE)
+			PASSIVE BUY/SELL CURRENT_VALUE
+		if count is up
+			PASSIVE BUY/SELL CURRENT_VALUE - PREVIOUS_VALUE
+		if count is down
+			CANCEL BUY/SELL PREVIOUS_VALUE - CURRENT_VALUE
+
+================================================================================================
+
+- book event
+	- buy event
+	- sell event
+	
+- trade event
+
+============================================================
+1. need to use a Memento design pattern to save the previous book state
+2. if event is book: do comparision between 
+=================================================
+
+1. InputHandler only has 1 thread which will receive the json input
+	- InputHandler is a Singleton
+	- parse out data to as Queue Class
+	- enque to the object
+	
+2. ProcesHandler mainly will have 2 thread
+	- main thread is 
+	
+=================================================
+1. Read the json file
+2. Triage to each valid json
+3. Get the below fields
+ - book or trade
+	 - if trade exists
+		- get string: symbol
+		- get uint32_t: quantiy
+		- get double: price
+	 - else if book is exists
+		- get string: symbol
+		- get list: bid
+		- get list: ask
+//----------
+class OrderQueue {
+public:
+	typedef struct order_attr_ {
+	    uint32_t order_count;
+		uint32_t order_quanity;		
+	} order_attr_t;
+	
+	std::string event_type; // book or trade
+    std::string symbol;    
+	std::map<double, order_attr_t> bid; // BUY. first is price value
+	std::map<double, order_attr_t> ask; // SELL. first is price value
+
+    OrderQueue() {};
+    OrderQueue(const OrderQueue &other) {
+        symbol = other.symbol;
+        event_type = other.event_type;
+        order_type = other.order_type;
+        order_count = other.order_count;
+        order_quanity = other.order_quanity;
+        order_price = other.order_price;
+    }
+
+private:
+
+};		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

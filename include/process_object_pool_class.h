@@ -31,6 +31,7 @@ class ProcessOBjectPool
 
     private:
         std::map<std::string, ProcessHandler*> m_process_object;
+        static int m_thread_count;
 
 };
 

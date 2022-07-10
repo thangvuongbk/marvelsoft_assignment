@@ -1,0 +1,498 @@
+Entering func: InitInputHandlerThread
+found a book event at line: 1
+symbol: ABBN
+--------- [BID] ---------
+--------- [ASK] ---------
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Creating new[thread_id: ; TotalThread: 1]
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 1
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 2
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 2
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 3
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:1
+quantity:900
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+Element: 1
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 3
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 4
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:1
+quantity:900
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:1900
+price:50.14
+Element: 1
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 4
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 5
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:2
+quantity:1300
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:1900
+price:50.14
+Element: 1
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 5
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 6
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:1900
+price:50.14
+Element: 1
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 6
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 7
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:1
+quantity:200
+price:50.13
+Element: 1
+count:3
+quantity:1530
+price:50.12
+Element: 2
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:1900
+price:50.14
+Element: 1
+Element: 2
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 7
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a trade event at line: 8
+symbol: ABBN
+quantity: 200
+price: 50.13
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: trade
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: trade
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 8
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 9
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:220
+price:50.13
+Element: 1
+count:1
+quantity:1900
+price:50.14
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 9
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+Entering func: InitProcessThread
+process_thread_id: 139964750616320 string: 139964750616320
+found a book event at line: 10
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:2
+quantity:550
+price:50.13
+Element: 1
+count:1
+quantity:1900
+price:50.14
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 10
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 11
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:3
+quantity:655
+price:50.13
+Element: 1
+count:1
+quantity:1900
+price:50.14
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 11
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 12
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:4
+quantity:1245
+price:50.13
+Element: 1
+count:1
+quantity:1900
+price:50.14
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 12
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a trade event at line: 13
+symbol: ABBN
+quantity: 220
+price: 50.13
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: trade
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: trade
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 13
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a trade event at line: 14
+symbol: ABBN
+quantity: 330
+price: 50.13
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: trade
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: trade
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 14
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a trade event at line: 15
+symbol: ABBN
+quantity: 105
+price: 50.13
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: trade
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: trade
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 15
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a trade event at line: 16
+symbol: ABBN
+quantity: 345
+price: 50.13
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: trade
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: trade
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 16
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+found a book event at line: 17
+symbol: ABBN
+--------- [BID] ---------
+Element: 0
+count:3
+quantity:1530
+price:50.12
+Element: 1
+count:1
+quantity:1300
+price:50.1
+--------- [ASK] ---------
+Element: 0
+count:1
+quantity:245
+price:50.13
+Element: 1
+count:1
+quantity:1900
+price:50.14
+Entering func: handleRequestWorker
+[Dequeue] Current Size: 16
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 15
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 14
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 13
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 12
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 11
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 10
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 9
+get_order->event_type: trade
+get_order->symbol: ABBN
+[Dequeue] Current Size: 8
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 7
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 6
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 5
+get_order->event_type: book
+get_order->symbol: ABBN
+[Dequeue] Current Size: 4
+get_order->event_type: trade
+get_order->symbol: ABBN
+[Dequeue] Current Size: 3
+get_order->event_type: trade
+get_order->symbol: ABBN
+[Dequeue] Current Size: 2
+get_order->event_type: trade
+get_order->symbol: ABBN
+[Dequeue] Current Size: 1
+get_order->event_type: trade
+get_order->symbol: ABBN
+Get the process object and send to queue
+Entering func: sendOrderToProcess
+Reusing existing. thread_id = 139964750616320
+Entering func: ProcessRequestArrived
+order_queue.event_type: book
+order_queue.symbol: ABBN
+Queue this order now
+_order_queue.event_type: book
+_order_queue.symbol: ABBN
+[Enqueue] Current Size: 1
+Leaving func: ProcessRequestArrived
+Leaving func: sendOrderToProcess
+-------------
+[Dequeue] Current Size: 1
+get_order->event_type: book
+get_order->symbol: ABBN
+Leaving func: InitProcessThread
+Leaving func: InitInputHandlerThread

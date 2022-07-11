@@ -1,3 +1,20 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   process_handler_class.cpp
+ *  \brief  This class is to handle the main logic for handling the event changed and write to file
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
 
 #include <sstream>
 
@@ -32,6 +49,14 @@ ProcessHandler::~ProcessHandler()
     //dtor
 }
 
+/** \brief the main entry for the thread created. use the detach method instead of join
+ *
+ * \param
+ * \param
+ * \return void
+ *
+ */
+
 void ProcessHandler::InitProcessThread()
 {
     processApp_pth = new thread(&ProcessHandler::handleRequestWorker, this);
@@ -47,6 +72,15 @@ void ProcessHandler::InitProcessThread()
 
 }
 
+
+/** \brief This function is called from other thread (Input handling thread) to enqueue the Order information.
+ *
+ * \param order_queue is a OrderQueue2
+ * \param
+ * \return always return true
+ *
+ */
+
 bool ProcessHandler::ProcessRequestArrived(OrderQueue2 order_queue)
 {
     //cout << "Entering func: " << __func__ << endl;
@@ -57,6 +91,13 @@ bool ProcessHandler::ProcessRequestArrived(OrderQueue2 order_queue)
     return 0;
 }
 
+
+/** \brief main worker for this class which is to handling the every book and trade and send to write to file
+ *
+ * \return void
+ *
+ */
+
 void ProcessHandler::handleRequestWorker()
 {
     //cout << "Entering func: " << __func__ << endl;
@@ -66,31 +107,30 @@ void ProcessHandler::handleRequestWorker()
             OrderQueue2* get_order = m_order_queue.dequeue();
             m_out_event = "";
 
-            /* Handle for BOOK event */
+            /**< Handle for BOOK event */
             if(get_order->event_type == BOOK) {
-
                 //cout << "\n---Handler BOOK order list received\n";
                 for(auto &it : get_order->bid) {
-                    //cout << "debug0\n";
-                    //cout << "lINE#" << get_order->lineNo << ":price:" << it.first << "|count:" << it.second.order_count << "|quantity:" << it.second.order_quanity << endl;
+
                     auto find_change = m_prev_order.bid.find(it.first);
-                    // if this price is not existing in the previous book
+                    /**< if this key price is not existing in the previous book */
                     if(find_change == m_prev_order.bid.end()) {
-                        //cout << "debug1\n";
+
                         auto find_in_trade = m_trade_map.find(it.first);
                         if(find_in_trade != m_trade_map.end()) {
-                        // case 1: Quantity buy is greater than Quantity SELL
+                        /**< case 1: Quantity buy is greater than Quantity SELL */
                             cout << get_order->lineNo << ": AGGRESSIVE BUY " << find_in_trade->second + it.second.order_quanity << "@" << it.first << endl;
                             m_out_event = constructMesg(ITENTION_AGGRESSIVE, SIDE_BUY, find_in_trade->second + it.second.order_quanity, it.first);
                             m_trade_map.erase(it.first);
                         }
-                        // case 2: This is new order buy
+                        /**< case 2: This is new order buy */
                         else {
                             cout << get_order->lineNo << ": PASSIVE BUY " << it.second.order_quanity << "@" << it.first << endl;
                             m_out_event = constructMesg(ITENTION_PASSIVE, SIDE_BUY, it.second.order_quanity, it.first);
                         }
 
                     }
+                    /**< if this key price is existing in the previous book */
                     else {
                         if(find_change->second.order_quanity < it.second.order_quanity) {
                             cout << get_order->lineNo << ": PASSIVE BUY " << (it.second.order_quanity - find_change->second.order_quanity)<< "@" << it.first << endl;
@@ -113,10 +153,8 @@ void ProcessHandler::handleRequestWorker()
                         //else cout << get_order->lineNo << ": [BUY SIDE] INVALID\n";
                     }
                 }
-                //cout << "\n--- Handle ASK order list received\n";
+                /**< Handle ASK order list received */
                 for(auto &itr : get_order->ask) {
-                    //cout << "price:" << itr.first << "|count:" << itr.second.order_count << "|quantity:" << itr.second.order_quanity << endl;
-                    //cout << "Finding itr.first: " << itr.first << endl;
                     auto find_in_previous = m_prev_order.ask.find(itr.first);
                     if(find_in_previous == m_prev_order.ask.end()) {
                         auto find_in_trade = m_trade_map.find(itr.first);
@@ -132,13 +170,12 @@ void ProcessHandler::handleRequestWorker()
                         }
                     }
                     else {
-                        //cout << "debug5\n";
-                        // case 1: quantity in new order is greater than previous order
+                        /**< case 1: quantity in new order is greater than previous order */
                         if(find_in_previous->second.order_quanity < itr.second.order_quanity) {
                             cout << get_order->lineNo << ": PASSIVE SELL " << (itr.second.order_quanity - find_in_previous->second.order_quanity)<< "@" << itr.first << endl;
                             m_out_event = constructMesg(ITENTION_PASSIVE, SIDE_SELL, itr.second.order_quanity - find_in_previous->second.order_quanity, itr.first);
                         }
-                        // case 2: quantity in new order is less or equal than previous order
+                        /**< case 2: quantity in new order is less or equal than previous order */
                         else if(find_in_previous->second.order_quanity >= itr.second.order_quanity){
                             // check if having a trade in between
                             auto find_in_trade = m_trade_map.find(itr.first);
@@ -154,20 +191,15 @@ void ProcessHandler::handleRequestWorker()
                                 m_out_event = constructMesg(ITENTION_CANCEL, SIDE_SELL, find_in_previous->second.order_quanity - itr.second.order_quanity, itr.first);
                             }
                         }
-                        //else cout << get_order->lineNo << ": [SELL SIDE] INVALID\n";
                     }
                 }
 
-                // save the previous order before deleting it. can use copy assignment here
-                //if(m_prev_order != nullptr) delete m_prev_order;
-                //resetObject();
+                /**< save the previous order before deleting it. can use copy assignment here */
                 m_prev_order = *get_order;
             }
             /* Handle for TRADE event */
             else if(get_order->event_type == TRADE) {
-                //cout << "\n---TRADE order received\n";
-                //cout << "price:" << get_order->order_trade.price << "|quantity:" << get_order->order_trade.order_quanity << endl;
-                // update to the previous order and set trade event is true
+                /**< update to the previous order and set trade event is true */
                 auto find_in_bid = m_prev_order.bid.find(get_order->order_trade.price);
                 auto find_in_ask = m_prev_order.ask.find(get_order->order_trade.price);
                 if(find_in_bid != m_prev_order.bid.end()) {
@@ -176,7 +208,7 @@ void ProcessHandler::handleRequestWorker()
                 else if(find_in_ask != m_prev_order.ask.end()) {
                     find_in_ask->second.order_quanity -= get_order->order_trade.order_quanity;
                 }
-                //1. check if this item already in the map, then update the quantity for it only
+                /**< check if this item already in the map, then update the quantity for it only */
                 auto find_in_trade = m_trade_map.find(get_order->order_trade.price);
                 if(find_in_trade != m_trade_map.end()) {
                     find_in_trade->second += get_order->order_trade.order_quanity;
@@ -185,15 +217,14 @@ void ProcessHandler::handleRequestWorker()
                     m_trade_map.insert(std::pair<double, uint32_t>(get_order->order_trade.price, get_order->order_trade.order_quanity));
                 }
             }
-            // write the file
-            //std::thread t(&ProcessHandler::WriteToFile, this, m_prev_order.symbol + ".txt", m_out_event );
+            /**< write the file */
             if(m_out_event != "") {
                 std::thread t(&ProcessHandler::WriteToFile, this, m_prev_order.symbol + ".txt", m_out_event );
                 if(t.joinable()) {
                    t.detach();
                 }
             }
-            // free the dequeue class
+            /**< free the dequeue class */
             delete get_order;
         }
         else {
@@ -203,6 +234,15 @@ void ProcessHandler::handleRequestWorker()
     }
 }
 
+/** \brief construct the message which shall be used to write out the file
+ *
+ * \param intention: PASSIVE, AGGRESSIVE, CANCEL
+ * \param side: BUY or SELL
+ * \param quantity: quantity
+ * \param price: price
+ * \return string is constructed
+ *
+ */
 
 std::string ProcessHandler::constructMesg(const std::string& intention, const std::string& side, uint32_t quantity, double price) {
     stringstream ss{};
@@ -216,16 +256,21 @@ std::string ProcessHandler::constructMesg(const std::string& intention, const st
     return ret;
 }
 
+/** \brief write a content to a file. here, file path is relative path which under /out/symbol_name.txt
+ *
+ * \param file_path: path to file
+ * \param content: which is constructed in function constructMesg
+ * \return void
+ *
+ */
+
 void ProcessHandler::WriteToFile(std::string file_path, const std::string& content)
 {
-    //cout << "Entering func: " << __func__ << endl;
     std::lock_guard<std::mutex> lock(m_mutex);
     std::ofstream m_fout;
-    //cout << "file: " << file_path << "\ncontent: " << content << endl;
     m_fout.open("out/"  + file_path, ios::app); // create a file in /out folder
     if(m_fout) {
         m_fout << content << endl;
     }
     m_fout.close();
-    //cout << "Leaving func: " << __func__ << endl;
 }

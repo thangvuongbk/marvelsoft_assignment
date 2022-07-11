@@ -1,3 +1,21 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   process_handler_class.h
+ *  \brief  header file for process handler class
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #ifndef PROCESSHANDLER_H
 #define PROCESSHANDLER_H
 

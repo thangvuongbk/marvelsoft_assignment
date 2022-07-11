@@ -1,4 +1,22 @@
 
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   input_handler_class.cpp
+ *  \brief  Parse out the input json file and enqueue data needed for next handling
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <memory>
@@ -10,6 +28,14 @@
 using namespace std;
 
 class OrderQueue2;
+
+/** \brief Find a key from json
+ *
+ * \param in: json
+ * \param in: key which shall search it
+ * \return out: result: if not found, return null and -1. else, return 0
+ *
+ */
 
 static inline uint32_t ParseMandatory(Json::Value json, std::string key, Json::Value& result)
 {
@@ -46,6 +72,14 @@ InputHandler::~InputHandler()
     //dtor
 }
 
+/** \brief Convert a string to Json format
+ *
+ * \param in: inp_string: input string
+ * \param out: out_json: outcome shall be returned to this variable
+ * \return 0 for success and -1 for failure
+ *
+ */
+
 bool InputHandler::convertString2Json(std::string inp_string, Json::Value& out_json)
 {
 	Json::CharReaderBuilder builder;
@@ -61,6 +95,14 @@ bool InputHandler::convertString2Json(std::string inp_string, Json::Value& out_j
     return 0;
 }
 
+/** \brief input handler thread shall be created from this function
+ *
+ * \param in: path_to_json: path to json input, default at /in folder
+ * \param
+ * \return void
+ *
+ */
+
 void InputHandler::InitInputHandlerThread(std::string path_to_json)
 {
     m_input_handler_pth = new thread(&InputHandler::handleInputWorker, this, path_to_json);
@@ -69,6 +111,15 @@ void InputHandler::InitInputHandlerThread(std::string path_to_json)
         m_input_handler_pth->join();
     }
 }
+
+
+/** \brief a worker and the main task shall be ran in this function. parse out the json and pack to next handling
+ *
+ * \param in: path_to_json: path to json input, default at /in folder
+ * \param
+ * \return void
+ *
+ */
 
 void InputHandler::handleInputWorker(std::string path_to_json)
 {
@@ -102,6 +153,7 @@ void InputHandler::handleInputWorker(std::string path_to_json)
 
                 bool isTrade = ParseMandatory(triage_json, TRADE, j_event_type);
 
+                /**< Handle for Book event */
               	if(isTrade != 0){
                     if(ParseMandatory(triage_json, BOOK, j_event_type) == 0) {
                         //cout << "found a book event at line: " << idx << endl;
@@ -157,6 +209,7 @@ void InputHandler::handleInputWorker(std::string path_to_json)
 
                     }
                 }
+                /**< Handle for trade event */
                 else {
                     order.event_type = TRADE;
                     //cout << "found a trade event at line: " << idx << endl;
@@ -181,6 +234,13 @@ void InputHandler::handleInputWorker(std::string path_to_json)
     }
 }
 
+/** \brief send the order and enqueue it to the corresponding thread
+ *
+ * \param pack_order: This is the common order queue class
+ * \param
+ * \return void
+ *
+ */
 
 void
 InputHandler::sendOrderToProcess(OrderQueue2& pack_order) {

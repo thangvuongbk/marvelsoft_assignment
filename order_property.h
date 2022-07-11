@@ -1,3 +1,21 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   order_property.h
+ *  \brief  This header file is declared the common data structure which shall be used between multiple threads
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #ifndef ORDER_PROPERTY_H_INCLUDED
 #define ORDER_PROPERTY_H_INCLUDED
 
@@ -13,30 +31,6 @@ using namespace std;
 #define COUNT "count"
 #define QUANTITY "quantity"
 #define PRICE "price"
-
-//class OrderQueue {
-//public:
-//    std::string symbol;
-//    std::string event_type; // book or trade
-//    std::string order_type; // SELL or BUY
-//    uint32_t order_count;
-//    uint32_t order_quanity;
-//    double order_price;
-//
-//    OrderQueue() {};
-//    OrderQueue(const OrderQueue &other) {
-//        symbol = other.symbol;
-//        event_type = other.event_type;
-//        order_type = other.order_type;
-//        order_count = other.order_count;
-//        order_quanity = other.order_quanity;
-//        order_price = other.order_price;
-//    }
-//
-//private:
-//
-//};
-
 
 class OrderQueue2 {
 public:

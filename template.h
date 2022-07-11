@@ -1,3 +1,21 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   template.h
+ *  \brief  them template class for queue
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #ifndef TEMPLATE_INCLUDED
 #define TEMPLATE_INCLUDED
 

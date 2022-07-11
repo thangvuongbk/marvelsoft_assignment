@@ -1,3 +1,21 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   process_object_pool_class.cpp
+ *  \brief  This class is to manage the process class as process object pool.
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #include <thread>
 
 #include "process_object_pool_class.h"
@@ -17,6 +35,13 @@ ProcessOBjectPool::~ProcessOBjectPool()
     //dtor
 }
 
+/** \brief This class should have only one instance
+ *
+ * \param
+ * \param
+ * \return ProcessOBjectPool
+ *
+ */
 
 ProcessOBjectPool* ProcessOBjectPool::getIns()
 {
@@ -25,6 +50,13 @@ ProcessOBjectPool* ProcessOBjectPool::getIns()
 }
 
 
+/** \brief if a ProcessHandler is associated with a unique symbol is created, then it returns, else create a new object and save to pool
+ *
+ * \param symbol: which shall associate with an unique object
+ * \param
+ * \return ProcessHandler
+ *
+ */
 
 ProcessHandler* ProcessOBjectPool::getProcessObj(std::string symbol)
 {

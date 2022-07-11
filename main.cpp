@@ -1,3 +1,21 @@
+/*!**************************************************************************
+ *  \No COPYRIGHT
+ *  \file   main.cpp
+ *  \brief  entry for the program
+ *  \author thangvv
+ *  \date   07/11/22
+ *
+ *  \brief Requirements Covered:
+ *  \n 1)   REQ_XXXX_Assignment
+
+ *  \note
+ *   Revision History:
+ *   Date        Author              Description
+ *   ------      --------            --------------
+ *   06/17/22    thangvv            Initial version
+
+*****************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <chrono>

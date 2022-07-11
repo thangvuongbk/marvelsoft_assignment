@@ -48,7 +48,7 @@ public:
 
     int queue_size()
     {
-        std::unique_lock<std::mutex> lock(_mutex);
+        //std::unique_lock<std::mutex> lock(_mutex);
         return _queue.size();
     }
 

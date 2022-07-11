@@ -50,18 +50,33 @@ public:
 	std::string event_type; // book or trade
     std::string symbol;
 	std::map<double, order_attr_t, greater<double>> bid; // BUY. first is price value
-	std::map<double, order_attr_t, greater<double>> ask; // SELL. first is price value
+	std::map<double, order_attr_t> ask; // SELL. first is price value
 	order_attr_t order_trade;
 
 	OrderQueue2() {};
 	OrderQueue2(const OrderQueue2& other) {
         event_type = other.event_type;
         symbol = other.symbol;
+        bid = std::map<double, order_attr_t, greater<double>>();
+        ask = std::map<double, order_attr_t>();
         bid = other.bid;
         ask = other.ask;
         order_trade = other.order_trade;
         lineNo = other.lineNo;
 	}
+
+    OrderQueue2& operator=(const OrderQueue2& other)
+    {
+        event_type = other.event_type;
+        symbol = other.symbol;
+        bid = std::map<double, order_attr_t, greater<double>>();
+        ask = std::map<double, order_attr_t>();
+        bid = other.bid;
+        ask = other.ask;
+        order_trade = other.order_trade;
+        lineNo = other.lineNo;
+        return *this;
+    }
 };
 
 #endif // ORDER_PROPERTY_H_INCLUDED

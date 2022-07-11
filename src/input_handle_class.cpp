@@ -63,17 +63,11 @@ bool InputHandler::convertString2Json(std::string inp_string, Json::Value& out_j
 
 void InputHandler::InitInputHandlerThread(std::string path_to_json)
 {
-    //cout << "Entering func: " << __func__ << endl;
     m_input_handler_pth = new thread(&InputHandler::handleInputWorker, this, path_to_json);
 
     if(m_input_handler_pth->joinable()) {
         m_input_handler_pth->join();
-        //m_input_handler_pth->detach();
     }
-
-    //std::this_thread::sleep_for(std::chrono::seconds(1));
-    //cout << "Leaving func: " << __func__ << endl;
-    //return 0;
 }
 
 void InputHandler::handleInputWorker(std::string path_to_json)
@@ -182,8 +176,6 @@ void InputHandler::handleInputWorker(std::string path_to_json)
                 //cout << "Get the process object and send to queue\n";
                 sendOrderToProcess(order);
             }
-
-            //cout << "-------------\n";
         }
         file.close();
     }

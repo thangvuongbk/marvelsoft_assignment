@@ -36,7 +36,9 @@ ProcessHandler* ProcessOBjectPool::getProcessObj(std::string symbol)
         m_process_object.insert(std::pair<std::string, ProcessHandler*> (symbol, newObject));
         //newObject->InitProcessThread();
         std::thread t(&ProcessHandler::InitProcessThread, newObject);
-        if(t.joinable()) t.detach();
+        if(t.joinable()) {
+           t.detach();
+        }
         //std::cout << "Creating new[thread_id: " << newObject->thread_id_str << "; TotalThread: " << m_thread_count << "]" << std::endl;
         //std::cout << "Creating new. Total thread: " << m_thread_count  << std::endl;
         return newObject;
